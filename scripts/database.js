@@ -42,3 +42,28 @@ export const getWheels = () => {
 export const getOrders = () => {
     return database.carOrders.map(order => ({...order}))
 }
+
+export const setPaint = (id) => {
+    database.packageChoices.paintId = id
+}
+
+export const setInterior = (id) => {
+    database.packageChoices.interiorId = id
+}
+
+export const setWheels = (id) => {
+    database.packageChoices.wheelId = id
+}
+
+export const setTech = (id) => {
+    database.packageChoices.techId = id
+}
+
+export const addCarOrder = () => {
+    const newOrder = {...database.packageChoices}
+    const lastIndex = database.carOrders.length
+    newOrder.id = database.lastIndex + 1
+    newOrder.timestamp = Date.now()
+    database.carOrders.push(newOrder)
+    document.dispatchEvent(new CustomEvent("stateChanged"))
+}
